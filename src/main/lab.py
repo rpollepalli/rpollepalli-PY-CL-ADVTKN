@@ -18,6 +18,7 @@ NLTK provides a snowball stemmer which we'll be using here
 """
 from nltk.stem.snowball import EnglishStemmer
 from nltk.tokenize import word_tokenize
+import nltk
 
 def sampleStemming():
     text = "The artist decided to create a new painting. Creating art is a form of self-expression. She hoped to create an atmosphere of creativity in her studio where she could freely create. The act of creation brought her joy, and she believed that anyone could create something beautiful with a bit of inspiration."
@@ -29,15 +30,18 @@ def sampleStemming():
     print(stemmed_words)
 
 """
-Complete this following function to tokenize and stem text. Your text should contain at least 10 words and one or more words that will stem into 'discoveri'. The test will check for the existence of the word 'discoveri' in your list of stemmed words
+Complete this following function to tokenize and stem text. 
+Your text should contain at least 10 words and one or more words that will stem into 
+'discoveri'. The test will check for the existence of the word 'discoveri' in your list of stemmed words
 """
 def stemmingExercise():
-    text = ""
-    word_tokens = None
-    
-    stemmer = None
-    stemmed_words = None
-
+    nltk.download('punkt')
+    text = "The latest science news and ground breaking discoveries with expert analysis"
+    word_tokens = word_tokenize(text)
+    #print(word_tokens)
+    stemmer = EnglishStemmer()
+    stemmed_words = [stemmer.stem(word) for word in word_tokens]
+    #print(stemmed_words)
     return stemmed_words
 
 
@@ -52,6 +56,7 @@ Lemmatization can help in improving the accuracy of the text analysis and reduci
 from nltk.stem import WordNetLemmatizer
 
 def sampleLemmatizing():
+    nltk.download('wordnet')
     lemmatizer = WordNetLemmatizer()
     string_for_lemmatizing = "Can you really have too many pens? They all serve different purposes and one simply cannot have too many!"
     words = word_tokenize(string_for_lemmatizing)
@@ -61,16 +66,21 @@ def sampleLemmatizing():
     print(lemmatized_words)
 
 """
-Complete this following function to tokenize and lemmatize your own text. Your text should contain at least 10 words and contain a word that will lemmatize into 'race' that is not 'race' in the original text. The test will check for the existence of the word 'race' in your list of lemmatized words.
+Complete this following function to tokenize and lemmatize your own text. 
+Your text should contain at least 10 words and contain a word that will lemmatize into 'race' 
+that is not 'race' in the original text. 
+The test will check for the existence of the word 'race' in your list of lemmatized words.
 
 Example:
 Original Text: I love races.
 Result: ['I', 'love', 'race', '.']
 """
 def lemmatizingExercise():
-    text = ""
-    word_tokens = None
-    lemmatizer = None
-    lemmatized_words = text
+    nltk.download('punkt')
+    nltk.download('wordnet')
+    text = "Two cars were in the race and the red car won the championship"
+    word_tokens = word_tokenize(text)
+    lemmatizer = WordNetLemmatizer()
+    lemmatized_words = [lemmatizer.lemmatize(word) for word in word_tokens]
 
     return lemmatized_words
